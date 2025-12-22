@@ -1,0 +1,275 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   SAINTSAL™ DESIGN SYSTEM - APPLE MEETS GOLD
+   ============================================================ */
+
+@layer base {
+  :root {
+    --background: 0 0% 5%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 43 96% 43%;
+    --primary-foreground: 0 0% 5%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 43 96% 43%;
+    --accent-foreground: 0 0% 5%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 43 96% 43%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply antialiased;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* ============================================================
+   CUSTOM COMPONENTS - SAINTSAL™ AESTHETIC
+   ============================================================ */
+
+@layer components {
+  /* Glass morphism cards */
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05), 0 20px 50px -10px rgba(0, 0, 0, 0.5);
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300;
+  }
+
+  /* Replaced @apply with raw CSS for gold colors that don't exist in Tailwind */
+  .glass-card-hover:hover {
+    border-color: rgba(212, 161, 6, 0.3);
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 1px rgba(212, 161, 6, 0.2), 0 25px 60px -10px rgba(0, 0, 0, 0.6), 0 0 40px rgba(212, 161, 6, 0.1);
+  }
+
+  /* Gold gradient text */
+  .text-gold-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #d4a106 0%, #ffd966 50%, #d4a106 100%);
+  }
+
+  /* Gold shimmer effect */
+  .gold-shimmer {
+    background: linear-gradient(90deg, rgba(212, 161, 6, 0) 0%, rgba(212, 161, 6, 0.3) 50%, rgba(212, 161, 6, 0) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite;
+  }
+
+  /* Premium button */
+  .btn-gold {
+    @apply relative px-8 py-4 rounded-xl font-semibold text-black overflow-hidden;
+    background: linear-gradient(135deg, #d4a106 0%, #ffd966 50%, #d4a106 100%);
+    background-size: 200% 200%;
+    transition: all 0.3s ease;
+  }
+
+  .btn-gold:hover {
+    background-position: 100% 100%;
+    box-shadow: 0 0 30px rgba(212, 161, 6, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .btn-gold:active {
+    transform: translateY(0);
+  }
+
+  /* Ghost button - Replaced @apply hover classes with raw CSS */
+  .btn-ghost {
+    @apply px-8 py-4 rounded-xl font-semibold border border-white/20 text-white transition-all duration-300;
+  }
+
+  .btn-ghost:hover {
+    border-color: rgba(212, 161, 6, 0.5);
+    background-color: rgba(212, 161, 6, 0.1);
+  }
+
+  /* Glow effect */
+  .glow-gold {
+    box-shadow: 0 0 30px rgba(212, 161, 6, 0.3);
+  }
+
+  .glow-gold-lg {
+    box-shadow: 0 0 60px rgba(212, 161, 6, 0.4);
+  }
+
+  /* Section container */
+  .section-container {
+    @apply max-w-7xl mx-auto px-6 lg:px-8;
+  }
+
+  /* Animated gradient border */
+  .gradient-border {
+    position: relative;
+  }
+
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, #d4a106, #ffd966, #d4a106);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  /* Input styling - Replaced @apply focus classes with raw CSS */
+  .input-premium {
+    @apply w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10;
+    @apply text-white placeholder:text-white/40;
+    @apply transition-all duration-200;
+  }
+
+  .input-premium:focus {
+    outline: none;
+    border-color: rgba(212, 161, 6, 0.5);
+    box-shadow: 0 0 0 2px rgba(212, 161, 6, 0.2);
+  }
+
+  /* Stats card */
+  .stat-card {
+    @apply glass-card p-6 text-center;
+  }
+
+  .stat-value {
+    @apply text-4xl lg:text-5xl font-bold text-gold-gradient;
+  }
+
+  .stat-label {
+    @apply text-sm text-white/60 mt-2;
+  }
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(212, 161, 6, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(212, 161, 6, 0.6);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* ============================================================
+   SCROLLBAR - MINIMAL APPLE STYLE
+   ============================================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 161, 6, 0.4);
+}
+
+/* ============================================================
+   SELECTION
+   ============================================================ */
+
+::selection {
+  background: rgba(212, 161, 6, 0.3);
+  color: white;
+}
+
+/* ============================================================
+   NOISE TEXTURE OVERLAY
+   ============================================================ */
+
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ============================================================
+   RESPONSIVE TYPOGRAPHY
+   ============================================================ */
+
+.hero-title {
+  @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight;
+}
+
+.section-title {
+  @apply text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight;
+}
+
+.card-title {
+  @apply text-xl sm:text-2xl font-semibold;
+}
