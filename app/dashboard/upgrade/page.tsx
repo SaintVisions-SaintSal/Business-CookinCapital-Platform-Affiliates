@@ -18,9 +18,15 @@ export default function UpgradePage() {
     setShowCheckout(true)
   }
 
-  const fetchClientSecret = useCallback(() => {
-    if (!selectedPlan) return Promise.resolve("")
-    return createCheckoutSession(selectedPlan)
+  const fetchClientSecret = useCallback(async (): Promise<string> => {
+    if (!selectedPlan) {
+      throw new Error("No plan selected")
+    }
+    const clientSecret = await createCheckoutSession(selectedPlan)
+    if (!clientSecret) {
+      throw new Error("Failed to create checkout session")
+    }
+    return clientSecret
   }, [selectedPlan])
 
   const plans = PRODUCTS.map((product) => ({
