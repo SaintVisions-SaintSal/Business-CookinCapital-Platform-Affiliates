@@ -88,7 +88,7 @@ importers:
         version: 2.39.3
       ai:
         specifier: ^4.0.0
-        version: 4.0.0(react@18.2.0)(zod@3.22.4)
+        version: 4.0.0(react@18.2.0)(zod@3.24.1)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -115,7 +115,7 @@ importers:
         version: 0.2.1(next@14.2.35(@opentelemetry/api@1.9.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       openai:
         specifier: 6.15.0
-        version: 6.15.0(ws@8.18.3)(zod@3.22.4)
+        version: 6.15.0(ws@8.18.3)(zod@3.24.1)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -150,8 +150,8 @@ importers:
         specifier: latest
         version: 8.18.3
       zod:
-        specifier: ^3.22.4
-        version: 3.22.4
+        specifier: ^3.24.1
+        version: 3.24.1
       zustand:
         specifier: ^4.5.0
         version: 4.5.0(@types/react@18.2.55)(immer@11.1.0)(react@18.2.0)
@@ -2969,8 +2969,8 @@ packages:
     peerDependencies:
       zod: ^3.25 || ^4
 
-  zod@3.22.4:
-    resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
+  zod@3.24.1:
+    resolution: {integrity: sha512-muH7gBL9sI1nciMZV67X5fTKKBLtwpZ5VBp1vsOQzj1MhrBZ4wlVCm3gedKZWLp0Oyel8sIGfeiz54Su+OVT+A==}
 
   zustand@4.5.0:
     resolution: {integrity: sha512-zlVFqS5TQ21nwijjhJlx4f9iGrXSL0o/+Dpy4txAP22miJ8Ti6c1Ol1RLNN98BMib83lmDH/2KmLwaNXpjrO1A==}
@@ -2989,36 +2989,36 @@ packages:
 
 snapshots:
 
-  '@ai-sdk/provider-utils@2.0.0(zod@3.22.4)':
+  '@ai-sdk/provider-utils@2.0.0(zod@3.24.1)':
     dependencies:
       '@ai-sdk/provider': 1.0.0
       eventsource-parser: 3.0.6
       nanoid: 5.1.6
       secure-json-parse: 2.7.0
     optionalDependencies:
-      zod: 3.22.4
+      zod: 3.24.1
 
   '@ai-sdk/provider@1.0.0':
     dependencies:
       json-schema: 0.4.0
 
-  '@ai-sdk/react@1.0.0(react@18.2.0)(zod@3.22.4)':
+  '@ai-sdk/react@1.0.0(react@18.2.0)(zod@3.24.1)':
     dependencies:
-      '@ai-sdk/provider-utils': 2.0.0(zod@3.22.4)
-      '@ai-sdk/ui-utils': 1.0.0(zod@3.22.4)
+      '@ai-sdk/provider-utils': 2.0.0(zod@3.24.1)
+      '@ai-sdk/ui-utils': 1.0.0(zod@3.24.1)
       swr: 2.3.8(react@18.2.0)
       throttleit: 2.1.0
     optionalDependencies:
       react: 18.2.0
-      zod: 3.22.4
+      zod: 3.24.1
 
-  '@ai-sdk/ui-utils@1.0.0(zod@3.22.4)':
+  '@ai-sdk/ui-utils@1.0.0(zod@3.24.1)':
     dependencies:
       '@ai-sdk/provider': 1.0.0
-      '@ai-sdk/provider-utils': 2.0.0(zod@3.22.4)
-      zod-to-json-schema: 3.25.0(zod@3.22.4)
+      '@ai-sdk/provider-utils': 2.0.0(zod@3.24.1)
+      zod-to-json-schema: 3.25.0(zod@3.24.1)
     optionalDependencies:
-      zod: 3.22.4
+      zod: 3.24.1
 
   '@alloc/quick-lru@5.2.0': {}
 
@@ -4120,18 +4120,18 @@ snapshots:
 
   acorn@8.15.0: {}
 
-  ai@4.0.0(react@18.2.0)(zod@3.22.4):
+  ai@4.0.0(react@18.2.0)(zod@3.24.1):
     dependencies:
       '@ai-sdk/provider': 1.0.0
-      '@ai-sdk/provider-utils': 2.0.0(zod@3.22.4)
-      '@ai-sdk/react': 1.0.0(react@18.2.0)(zod@3.22.4)
-      '@ai-sdk/ui-utils': 1.0.0(zod@3.22.4)
+      '@ai-sdk/provider-utils': 2.0.0(zod@3.24.1)
+      '@ai-sdk/react': 1.0.0(react@18.2.0)(zod@3.24.1)
+      '@ai-sdk/ui-utils': 1.0.0(zod@3.24.1)
       '@opentelemetry/api': 1.9.0
       jsondiffpatch: 0.6.0
-      zod-to-json-schema: 3.25.0(zod@3.22.4)
+      zod-to-json-schema: 3.25.0(zod@3.24.1)
     optionalDependencies:
       react: 18.2.0
-      zod: 3.22.4
+      zod: 3.24.1
 
   ajv@6.12.6:
     dependencies:
@@ -5351,10 +5351,10 @@ snapshots:
     dependencies:
       wrappy: 1.0.2
 
-  openai@6.15.0(ws@8.18.3)(zod@3.22.4):
+  openai@6.15.0(ws@8.18.3)(zod@3.24.1):
     optionalDependencies:
       ws: 8.18.3
-      zod: 3.22.4
+      zod: 3.24.1
 
   optionator@0.9.4:
     dependencies:
@@ -6032,11 +6032,11 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  zod-to-json-schema@3.25.0(zod@3.22.4):
+  zod-to-json-schema@3.25.0(zod@3.24.1):
     dependencies:
-      zod: 3.22.4
+      zod: 3.24.1
 
-  zod@3.22.4: {}
+  zod@3.24.1: {}
 
   zustand@4.5.0(@types/react@18.2.55)(immer@11.1.0)(react@18.2.0):
     dependencies:
