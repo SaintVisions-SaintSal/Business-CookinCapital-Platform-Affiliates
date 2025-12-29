@@ -1,4 +1,5 @@
 import { streamText } from "ai"
+import { openai } from "@ai-sdk/openai"
 import { createClient } from "@/lib/supabase/server"
 
 export async function POST(req: Request) {
@@ -15,7 +16,7 @@ export async function POST(req: Request) {
   }
 
   const result = streamText({
-    model: "openai:gpt-4o",
+    model: openai("gpt-4o"),
     system: `You are SaintSal™, an elite AI business advisor powered by Saint Vision Technologies. You specialize in:
 
 - Real Estate Investing (wholesaling, fix & flip, rental properties)
