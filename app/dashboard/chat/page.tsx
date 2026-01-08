@@ -1,14 +1,34 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useRef, useEffect } from "react"
-import { Send, Bot, User, Sparkles } from "lucide-react"
-import { sendMessage } from "./actions"
+import { Send, Bot, User, Sparkles, ExternalLink } from "lucide-react"
 
 interface Message {
   role: "user" | "assistant"
   content: string
+}
+
+const showcaseResponses: Record<string, string> = {
+  default:
+    "Thanks for your interest in SaintSal™ AI! This is a showcase demo. For the full AI experience with real-time business insights, visit our production platform at SaintSal.com. The complete AI advisor will help you with real estate investing, trading strategies, and business growth.",
+  wholesale:
+    "Great question about wholesale deals! The 70% Rule is fundamental: Maximum Purchase Price = (ARV × 70%) - Repair Costs. For example, if a property's ARV is $200K and needs $30K in repairs, your max offer is $110K. Visit CookinFlips.com for our full deal analyzer powered by SaintSal™ AI.",
+  "70%":
+    "The 70% Rule helps wholesalers calculate maximum allowable offer (MAO). Formula: MAO = (ARV × 0.70) - Repairs. This ensures profit margins for both you and your end buyer. Our CookinCapital.com platform has advanced calculators for precise deal analysis.",
+  passive:
+    "Building passive income requires multiple streams: real estate rentals, dividend stocks, affiliate marketing, and digital products. SaintSal™ helps you analyze opportunities across all these. Join CookinPartners.com to earn commissions while building your wealth!",
+  affiliate:
+    "Affiliate marketing with SaintSal™ offers 30% recurring commissions on all referrals. Our ecosystem includes CookinCapital (lending), CookinFlips (investing), and CookinPartners (affiliates). Start earning at CookinPartners.com!",
+}
+
+function getResponse(input: string): string {
+  const lower = input.toLowerCase()
+  if (lower.includes("wholesale") || lower.includes("deal")) return showcaseResponses.wholesale
+  if (lower.includes("70%") || lower.includes("rule")) return showcaseResponses["70%"]
+  if (lower.includes("passive") || lower.includes("income")) return showcaseResponses.passive
+  if (lower.includes("affiliate") || lower.includes("commission")) return showcaseResponses.affiliate
+  return showcaseResponses.default
 }
 
 export default function ChatPage() {
@@ -16,7 +36,7 @@ export default function ChatPage() {
     {
       role: "assistant",
       content:
-        "Hey! I'm SaintSal™, your AI business advisor. I can help you with real estate investing, business strategy, trading insights, and more. What would you like to know?",
+        "Hey! I'm SaintSal™ AI, your business advisor. This is a showcase demo of our AI capabilities. Ask me about real estate investing, the 70% rule, passive income, or affiliate marketing!",
     },
   ])
   const [input, setInput] = useState("")
@@ -40,28 +60,11 @@ export default function ChatPage() {
     setMessages((prev) => [...prev, { role: "user", content: userMessage }])
     setIsLoading(true)
 
-    try {
-      const assistantResponse = await sendMessage(userMessage)
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content: assistantResponse,
-        },
-      ])
-    } catch (error) {
-      console.error("[v0] AI generation error:", error)
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: "assistant",
-          content:
-            "I apologize, but I encountered an error processing your request. Please try again or contact support if the issue persists.",
-        },
-      ])
-    } finally {
-      setIsLoading(false)
-    }
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+
+    const response = getResponse(userMessage)
+    setMessages((prev) => [...prev, { role: "assistant", content: response }])
+    setIsLoading(false)
   }
 
   const suggestedPrompts = [
@@ -82,9 +85,20 @@ export default function ChatPage() {
           <h1 className="text-xl font-bold text-white">SaintSal™ AI</h1>
           <p className="text-sm text-neutral-400">Your AI Business Advisor</p>
         </div>
-        <div className="ml-auto flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20">
-          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-          <span className="text-xs text-green-400">Online</span>
+        <div className="ml-auto flex items-center gap-4">
+          <a
+            href="https://saintsal.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 hover:bg-amber-500/20 transition-colors"
+          >
+            <span className="text-xs text-amber-400">Full AI Experience</span>
+            <ExternalLink className="w-3 h-3 text-amber-400" />
+          </a>
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20">
+            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+            <span className="text-xs text-green-400">Demo Mode</span>
+          </div>
         </div>
       </div>
 
@@ -121,8 +135,14 @@ export default function ChatPage() {
             <div className="bg-neutral-800 p-4 rounded-2xl rounded-bl-sm">
               <div className="flex gap-1">
                 <div className="w-2 h-2 bg-neutral-500 rounded-full animate-bounce" />
-                <div className="w-2 h-2 bg-neutral-500 rounded-full animate-bounce delay-100" />
-                <div className="w-2 h-2 bg-neutral-500 rounded-full animate-bounce delay-200" />
+                <div
+                  className="w-2 h-2 bg-neutral-500 rounded-full animate-bounce"
+                  style={{ animationDelay: "0.1s" }}
+                />
+                <div
+                  className="w-2 h-2 bg-neutral-500 rounded-full animate-bounce"
+                  style={{ animationDelay: "0.2s" }}
+                />
               </div>
             </div>
           </div>
@@ -135,7 +155,7 @@ export default function ChatPage() {
         <div className="mb-4">
           <div className="flex items-center gap-2 mb-3">
             <Sparkles className="w-4 h-4 text-amber-400" />
-            <span className="text-sm text-neutral-400">Suggested questions</span>
+            <span className="text-sm text-neutral-400">Try these questions</span>
           </div>
           <div className="flex flex-wrap gap-2">
             {suggestedPrompts.map((prompt, i) => (
