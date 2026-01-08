@@ -1,32 +1,8 @@
-import { createClient } from "@/lib/supabase/server"
-import Link from "next/link"
-import { DollarSign, Users, TrendingUp, Trophy, ChevronRight, Wallet, Sparkles } from "lucide-react"
-import { CopyButton } from "@/components/copy-button"
-import { JoinAffiliateButton } from "@/components/join-affiliate-button"
+import { DollarSign, Users, TrendingUp, Trophy, Wallet, Sparkles, ExternalLink } from "lucide-react"
 
-export default async function AffiliatesPage() {
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  const { data: affiliate } = await supabase.from("affiliates").select("*").eq("user_id", user?.id).maybeSingle()
-
-  const isAffiliate = !!affiliate
-
-  // Generate referral link
-  const referralCode = affiliate?.affiliate_code || user?.id?.slice(0, 8).toUpperCase()
-  const referralLink = `${process.env.NEXT_PUBLIC_SITE_URL || "https://cookinbiz.com"}?ref=${referralCode}`
-
-  // Fetch referrals if affiliate
-  const { data: referrals } = isAffiliate
-    ? await supabase
-        .from("referrals")
-        .select("*")
-        .eq("affiliate_id", affiliate?.id)
-        .order("created_at", { ascending: false })
-        .limit(10)
-    : { data: [] }
+export default function AffiliatesPage() {
+  const referralCode = "SAINT2024"
+  const referralLink = `https://cookinpartners.com?ref=${referralCode}`
 
   const commissionTiers = [
     { name: "Starter", price: 27, commission: 8.1, color: "border-neutral-700 bg-neutral-900/50" },
@@ -42,112 +18,11 @@ export default async function AffiliatesPage() {
   ]
 
   const stats = [
-    {
-      label: "Total Earnings",
-      value: affiliate?.total_earnings ? `$${Number(affiliate.total_earnings).toFixed(2)}` : "$0.00",
-      icon: DollarSign,
-      color: "text-green-400",
-      bg: "bg-green-500/20",
-    },
-    {
-      label: "Active Referrals",
-      value: affiliate?.total_referrals?.toString() || "0",
-      icon: Users,
-      color: "text-amber-400",
-      bg: "bg-amber-500/20",
-    },
+    { label: "Total Earnings", value: "$0.00", icon: DollarSign, color: "text-green-400", bg: "bg-green-500/20" },
+    { label: "Active Referrals", value: "0", icon: Users, color: "text-amber-400", bg: "bg-amber-500/20" },
     { label: "Pending Payout", value: "$0.00", icon: Wallet, color: "text-blue-400", bg: "bg-blue-500/20" },
     { label: "Conversion Rate", value: "0%", icon: TrendingUp, color: "text-purple-400", bg: "bg-purple-500/20" },
   ]
-
-  if (!isAffiliate) {
-    return (
-      <div className="p-6 lg:p-10">
-        <div className="max-w-4xl mx-auto">
-          {/* Hero Section */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/20 border border-green-500/30 mb-6">
-              <Sparkles className="w-4 h-4 text-green-400" />
-              <span className="text-sm font-medium text-green-400">JOIN THE PROGRAM</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Start earning
-              <br />
-              <span className="text-green-400">30% recurring commission.</span>
-            </h1>
-            <p className="text-xl text-neutral-400 mb-8">Free to join. No caps. No limits. Just passive income.</p>
-            <JoinAffiliateButton />
-          </div>
-
-          {/* Commission Breakdown */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold text-white mb-6 text-center">
-              Earn up to <span className="text-green-400">$149.10/mo</span> per referral
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              {commissionTiers.map((tier, i) => (
-                <div
-                  key={i}
-                  className={`p-6 rounded-2xl border ${tier.color} ${tier.highlight ? "ring-2 ring-purple-500/50" : ""}`}
-                >
-                  {tier.highlight && <div className="text-xs font-bold text-purple-400 mb-2">HIGHEST EARNINGS</div>}
-                  <div className="text-neutral-400 text-sm mb-1">{tier.name}</div>
-                  <div className="text-2xl font-bold text-white mb-3">
-                    ${tier.price}
-                    <span className="text-neutral-500 text-base">/mo</span>
-                  </div>
-                  <div className="pt-3 border-t border-neutral-700">
-                    <div className="text-sm text-neutral-500">You Earn</div>
-                    <div className="text-3xl font-bold text-green-400">
-                      ${tier.commission.toFixed(2)}
-                      <span className="text-green-400/60 text-base">/mo</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Earnings Example */}
-          <div className="p-8 rounded-3xl bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20 text-center mb-12">
-            <div className="text-white/60 mb-2">10 Enterprise referrals =</div>
-            <div className="text-5xl md:text-6xl font-bold text-green-400 mb-2">$1,491/mo</div>
-            <div className="text-white/50 mb-6">Recurring passive income. Forever.</div>
-            <JoinAffiliateButton />
-          </div>
-
-          {/* Benefits */}
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                icon: DollarSign,
-                title: "30% Recurring",
-                desc: "Earn commission every month, not just once",
-              },
-              {
-                icon: Users,
-                title: "Unlimited Referrals",
-                desc: "No caps on how much you can earn",
-              },
-              {
-                icon: Trophy,
-                title: "VP Partner Program",
-                desc: "Earn 15% override on your team's sales",
-              },
-            ].map((benefit, i) => (
-              <div key={i} className="p-6 rounded-2xl bg-neutral-900/50 border border-neutral-800 text-center">
-                <div className="w-12 h-12 rounded-2xl bg-green-500/20 flex items-center justify-center mx-auto mb-4">
-                  <benefit.icon className="w-6 h-6 text-green-400" />
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">{benefit.title}</h3>
-                <p className="text-neutral-400 text-sm">{benefit.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    )
-  }
 
   return (
     <div className="p-6 lg:p-10">
@@ -156,18 +31,20 @@ export default async function AffiliatesPage() {
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-sm font-medium mb-2">
             <Trophy className="w-4 h-4" />
-            Partner Status: Active
+            SaintSal™ Affiliate Program
           </div>
           <h1 className="text-3xl font-bold text-white mb-1">Affiliate Dashboard</h1>
           <p className="text-neutral-400">Earn 30% recurring commission on every referral.</p>
         </div>
-        <Link
-          href="/dashboard/earnings"
+        <a
+          href="https://cookinpartners.com"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-6 py-3 bg-green-500 text-white font-semibold rounded-xl hover:bg-green-400 transition-all"
         >
-          <DollarSign className="w-5 h-5" />
-          Request Payout
-        </Link>
+          <ExternalLink className="w-5 h-5" />
+          Join at CookinPartners.com
+        </a>
       </div>
 
       {/* Stats Grid */}
@@ -185,19 +62,28 @@ export default async function AffiliatesPage() {
         ))}
       </div>
 
-      {/* Referral Link */}
+      {/* CookinPartners CTA */}
       <div className="p-8 rounded-3xl bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20 mb-10">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div>
-            <h3 className="text-xl font-bold text-white mb-2">Your Referral Link</h3>
-            <p className="text-neutral-400">Share this link and earn 30% recurring commission for life!</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="px-4 py-3 bg-black/50 rounded-xl border border-neutral-700 font-mono text-neutral-300 text-sm max-w-md overflow-x-auto">
-              {referralLink}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/20 text-amber-400 text-sm font-medium mb-3">
+              <Sparkles className="w-4 h-4" />
+              Full Affiliate Portal
             </div>
-            <CopyButton text={referralLink} />
+            <h3 className="text-xl font-bold text-white mb-2">CookinPartners.com</h3>
+            <p className="text-neutral-400">
+              Access the complete affiliate portal with tracking, payouts, and marketing materials.
+            </p>
           </div>
+          <a
+            href="https://cookinpartners.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-xl hover:from-amber-400 hover:to-orange-400 transition-all"
+          >
+            Go to CookinPartners
+            <ExternalLink className="w-5 h-5" />
+          </a>
         </div>
       </div>
 
@@ -260,43 +146,47 @@ export default async function AffiliatesPage() {
         </div>
       </div>
 
-      {/* Recent Referrals */}
+      {/* Ecosystem Links */}
       <div className="p-8 rounded-3xl bg-neutral-900/50 border border-neutral-800">
-        <div className="flex items-center justify-between mb-6">
-          <h3 className="text-xl font-bold text-white">Recent Referrals</h3>
-          <Link
-            href="/dashboard/earnings"
-            className="text-sm text-amber-400 hover:text-amber-300 flex items-center gap-1"
+        <h3 className="text-xl font-bold text-white mb-6">SaintSal™ Ecosystem</h3>
+        <div className="grid md:grid-cols-3 gap-4">
+          <a
+            href="https://cookinpartners.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group p-6 rounded-2xl bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-green-500/20 hover:border-green-500/40 transition-all"
           >
-            View All <ChevronRight className="w-4 h-4" />
-          </Link>
+            <div className="text-green-400 font-bold text-lg mb-2 flex items-center gap-2">
+              CookinPartners.com
+              <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </div>
+            <p className="text-neutral-400 text-sm">Affiliate & partner program portal</p>
+          </a>
+          <a
+            href="https://cookinflips.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group p-6 rounded-2xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/20 hover:border-blue-500/40 transition-all"
+          >
+            <div className="text-blue-400 font-bold text-lg mb-2 flex items-center gap-2">
+              CookinFlips.com
+              <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </div>
+            <p className="text-neutral-400 text-sm">Real estate investments & fix-n-flips</p>
+          </a>
+          <a
+            href="https://cookincapital.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group p-6 rounded-2xl bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-amber-500/20 hover:border-amber-500/40 transition-all"
+          >
+            <div className="text-amber-400 font-bold text-lg mb-2 flex items-center gap-2">
+              CookinCapital.com
+              <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </div>
+            <p className="text-neutral-400 text-sm">Commercial & residential lending</p>
+          </a>
         </div>
-        {referrals && referrals.length > 0 ? (
-          <div className="space-y-4">
-            {referrals.map((referral: any, i: number) => (
-              <div key={i} className="flex items-center justify-between p-4 rounded-xl bg-black/30">
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-black font-bold">
-                    {referral.referred_email?.charAt(0).toUpperCase() || "?"}
-                  </div>
-                  <div>
-                    <div className="font-medium text-white">{referral.referred_email || "Anonymous"}</div>
-                    <div className="text-sm text-neutral-500">{referral.status}</div>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <div className="font-bold text-green-400">${Number(referral.commission_earned || 0).toFixed(2)}</div>
-                  <div className="text-xs text-green-400/60">total earned</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12 text-neutral-500">
-            <Users className="w-12 h-12 mx-auto mb-4 opacity-50" />
-            <p>No referrals yet. Share your link to start earning!</p>
-          </div>
-        )}
       </div>
     </div>
   )

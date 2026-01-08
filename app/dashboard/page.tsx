@@ -1,28 +1,11 @@
-import { createClient } from "@/lib/supabase/server"
 import Link from "next/link"
 import { Bot, Building2, TrendingUp, Users, DollarSign, MessageSquare, ArrowUpRight, ChevronRight } from "lucide-react"
 
-export default async function DashboardPage() {
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  const { data: affiliate } = await supabase.from("affiliates").select("*").eq("user_id", user?.id).maybeSingle()
-
-  let referralCount = 0
-  if (affiliate?.id) {
-    const { count } = await supabase
-      .from("referrals")
-      .select("*", { count: "exact", head: true })
-      .eq("affiliate_id", affiliate.id)
-    referralCount = count || 0
-  }
-
+export default function DashboardPage() {
   const stats = [
     {
       label: "Total Earnings",
-      value: affiliate?.total_earnings ? `$${affiliate.total_earnings.toFixed(2)}` : "$0.00",
+      value: "$0.00",
       change: "+23%",
       icon: DollarSign,
       color: "text-green-400",
@@ -30,7 +13,7 @@ export default async function DashboardPage() {
     },
     {
       label: "Active Referrals",
-      value: referralCount?.toString() || "0",
+      value: "0",
       change: "+12",
       icon: Users,
       color: "text-amber-400",
