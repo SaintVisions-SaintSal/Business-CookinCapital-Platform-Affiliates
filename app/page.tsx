@@ -97,22 +97,42 @@ export default function HomePage() {
       <section className="relative pt-24 pb-32 px-6">
         <div className="max-w-5xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8">
-            <span className="text-xs font-medium text-amber-400">PATENT PROTECTED</span>
-            <span className="text-sm text-white/60">US Patent 10,290,222 + HACP™ Pending</span>
+            <span className="text-xs font-bold text-emerald-400 tracking-wider">4 IP ARSENAL</span>
+            <span className="text-sm text-white/60">2 Patents + 2 Trademarks • Fully Issued</span>
             <ChevronRight className="w-4 h-4 text-white/40" />
           </div>
 
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tight mb-6 leading-[1.1]">
-            <span className="text-white">The AI that</span>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight mb-6 leading-[1.1]">
+            <span className="text-white font-extralight">Responsible</span>
             <br />
-            <span className="text-gold-gradient">builds wealth.</span>
+            <span className="text-gold-hero-shimmer font-medium">Intelligence.</span>
           </h1>
 
-          <p className="text-xl md:text-2xl text-white/50 max-w-3xl mx-auto mb-10 leading-relaxed font-light">
-            Trading. Real Estate. Business Intelligence. All powered by SaintSal™ AI.
+          <p className="text-xl md:text-2xl text-white/50 max-w-3xl mx-auto mb-10 leading-relaxed font-light tracking-wide">
+            The world's first faith-based AI. First Human AI Protocol.
             <br className="hidden md:block" />
-            One platform. Endless possibilities.
+            First Human AI Agents. Powered by SaintSal<sup className="text-white text-xs">™</sup> & HACP
+            <sup className="text-white text-xs">™</sup>.
           </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+              <span className="text-xs font-medium text-emerald-300 tracking-wide">FIRST FAITH-BASED AI</span>
+            </div>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/30">
+              <span className="w-1.5 h-1.5 rounded-full bg-teal-400" />
+              <span className="text-xs font-medium text-teal-300 tracking-wide">FIRST HUMAN AI PROTOCOL</span>
+            </div>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+              <span className="text-xs font-medium text-cyan-300 tracking-wide">FIRST HUMAN AI AGENTS</span>
+            </div>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/30">
+              <span className="text-xs">🍎</span>
+              <span className="text-xs font-medium text-amber-300 tracking-wide">ON APPLE & GOOGLE</span>
+            </div>
+          </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
             <Link
@@ -126,7 +146,7 @@ export default function HomePage() {
               href="https://cookinpartners.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-8 py-4 text-amber-400 hover:text-amber-300 transition-all text-lg border border-amber-400/30 rounded-full hover:border-amber-400/50"
+              className="flex items-center gap-2 px-8 py-4 text-emerald-400 hover:text-emerald-300 transition-all text-lg border border-emerald-400/30 rounded-full hover:border-emerald-400/50"
             >
               <Users className="w-5 h-5" />
               Partner Program
@@ -135,7 +155,7 @@ export default function HomePage() {
 
           {/* Hero visual */}
           <div className="relative max-w-4xl mx-auto">
-            <div className="absolute inset-0 bg-gradient-to-r from-amber-500/20 via-transparent to-amber-500/20 blur-3xl" />
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 via-transparent to-emerald-500/20 blur-3xl" />
             <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-b from-white/5 to-transparent p-1">
               <div className="rounded-[20px] overflow-hidden bg-[#0a0a0a]">
                 <Image
@@ -505,7 +525,9 @@ export default function HomePage() {
                   <span className="text-white font-semibold">Human-Centered.</span>
                 </p>
                 <p className="text-sm text-white/40 mt-2">
-                  US Patent 10,290,222 • HACP™ Patent Pending (19/296,986) • Protected by Quadruple IP
+                  US Patent 10,290,222 | HACP<span className="text-white">™</span> Patent Pending | SaintSal
+                  <span className="text-white">™</span> & HACP<span className="text-white">™</span> are registered
+                  trademarks
                 </p>
               </div>
             </div>
