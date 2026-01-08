@@ -5,12 +5,13 @@ import Link from "next/link"
 import {
   LayoutDashboard,
   Users,
-  CreditCard,
   LogOut,
   MessageSquare,
   TrendingUp,
   Building2,
   DollarSign,
+  Landmark,
+  HelpCircle,
 } from "lucide-react"
 
 async function signOut() {
@@ -36,12 +37,13 @@ export default async function DashboardLayout({
 
   const navItems = [
     { href: "/dashboard", icon: LayoutDashboard, label: "Overview" },
-    { href: "/dashboard/chat", icon: MessageSquare, label: "SaintSal™ Chat" },
-    { href: "/dashboard/trading", icon: TrendingUp, label: "Trading" },
+    { href: "/dashboard/chat", icon: MessageSquare, label: "SaintSal™ AI" },
+    { href: "/dashboard/trading", icon: TrendingUp, label: "Investments" },
     { href: "/dashboard/real-estate", icon: Building2, label: "Real Estate" },
-    { href: "/dashboard/affiliates", icon: Users, label: "Affiliates" },
-    { href: "/dashboard/earnings", icon: DollarSign, label: "Earnings" },
-    { href: "/dashboard/upgrade", icon: CreditCard, label: "Upgrade" },
+    { href: "/dashboard/lending", icon: Landmark, label: "Lending" },
+    { href: "/dashboard/affiliates", icon: Users, label: "Partner Portal" },
+    { href: "/dashboard/earnings", icon: DollarSign, label: "Commissions" },
+    { href: "/dashboard/help", icon: HelpCircle, label: "Help Center" },
   ]
 
   return (
@@ -55,7 +57,9 @@ export default async function DashboardLayout({
               alt="SaintSal™"
               className="w-10 h-10 drop-shadow-[0_0_10px_rgba(212,161,6,0.4)]"
             />
-            <span className="text-[#d4a106] font-bold text-lg font-serif">SaintSal™</span>
+            <span className="text-[#d4a106] font-bold text-lg font-serif">
+              SaintSal<sup className="text-white text-xs ml-0.5">™</sup>
+            </span>
           </Link>
         </div>
 

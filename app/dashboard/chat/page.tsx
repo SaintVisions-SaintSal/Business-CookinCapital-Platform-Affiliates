@@ -36,7 +36,7 @@ export default function ChatPage() {
     {
       role: "assistant",
       content:
-        "Hey! I'm SaintSal™ AI, your business advisor. This is a showcase demo of our AI capabilities. Ask me about real estate investing, the 70% rule, passive income, or affiliate marketing!",
+        "Hey! I'm SaintSal™ AI, your business advisor. This is a showcase demo of our AI capabilities. Ask me anything about real estate investing, the 70% rule, passive income, or affiliate marketing!",
     },
   ])
   const [input, setInput] = useState("")
@@ -82,7 +82,9 @@ export default function ChatPage() {
           <Bot className="w-6 h-6 text-black" />
         </div>
         <div>
-          <h1 className="text-xl font-bold text-white">SaintSal™ AI</h1>
+          <h1 className="text-xl font-bold text-white">
+            SaintSal<span className="text-white">™</span> AI
+          </h1>
           <p className="text-sm text-neutral-400">Your AI Business Advisor</p>
         </div>
         <div className="ml-auto flex items-center gap-4">

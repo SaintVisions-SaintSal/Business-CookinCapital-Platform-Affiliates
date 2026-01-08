@@ -17,7 +17,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white overflow-hidden">
       {/* Subtle grid background */}
-      <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] pointer-events-none" />
+      <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,256,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,256,0.02)_1px,transparent_1px)] bg-[size:64px_64px] pointer-events-none" />
 
       {/* Navigation - Apple style minimal */}
       <nav className="relative z-50 border-b border-white/5 bg-black/90 backdrop-blur-2xl sticky top-0">
@@ -459,15 +459,54 @@ export default function HomePage() {
             ))}
           </div>
 
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-green-500/10 via-emerald-500/10 to-green-500/10 border border-green-500/30 p-12 text-center">
+          {/* SaintSal™ Vision and HACP™ Section */}
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-emerald-500/10 border border-emerald-500/30 p-12">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.15),transparent_70%)]" />
             <div className="relative z-10">
-              <div className="text-white/50 text-lg mb-3">BlueIron $18M Loan</div>
-              <div className="text-6xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 mb-4">
-                4.5-9% LTV
+              <div className="grid md:grid-cols-2 gap-12 items-center">
+                {/* Left - HACP */}
+                <div className="text-center md:text-left">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/20 border border-emerald-500/30 mb-6">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-xs font-bold text-emerald-300 tracking-wider">WORLD'S FIRST</span>
+                  </div>
+                  <h3 className="text-4xl md:text-5xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-emerald-300 mb-4">
+                    HACP™
+                  </h3>
+                  <p className="text-xl text-white/80 font-medium mb-3">Human AI Connection Protocol™</p>
+                  <p className="text-white/60 leading-relaxed">
+                    The first protocol that bridges human intuition with artificial intelligence. Patent-pending
+                    technology that creates genuine AI-human collaboration, not replacement.
+                  </p>
+                </div>
+
+                {/* Right - Faith-Based AI */}
+                <div className="text-center md:text-left">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/20 border border-emerald-500/30 mb-6">
+                    <span className="text-lg">✝</span>
+                    <span className="text-xs font-bold text-emerald-300 tracking-wider">FAITH-BASED AI</span>
+                  </div>
+                  <h3 className="text-4xl md:text-5xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-emerald-300 mb-4">
+                    SaintSal™
+                  </h3>
+                  <p className="text-xl text-white/80 font-medium mb-3">First Faith-Based AI Platform™</p>
+                  <p className="text-white/60 leading-relaxed">
+                    Built on principles of integrity, service, and stewardship. SaintSal™ is the first AI designed to
+                    align with faith-based values while delivering institutional-grade intelligence.
+                  </p>
+                </div>
               </div>
-              <div className="text-white/70 text-lg max-w-2xl mx-auto">
-                <span className="text-white font-semibold">Ultra-Conservative.</span> Strongest collateral position in
-                IP lending history.
+
+              {/* Bottom tagline */}
+              <div className="mt-10 pt-8 border-t border-white/10 text-center">
+                <p className="text-lg text-white/70">
+                  <span className="text-emerald-400 font-semibold">Responsible AI.</span>{" "}
+                  <span className="text-teal-400 font-semibold">Faith-Driven.</span>{" "}
+                  <span className="text-white font-semibold">Human-Centered.</span>
+                </p>
+                <p className="text-sm text-white/40 mt-2">
+                  US Patent 10,290,222 • HACP™ Patent Pending (19/296,986) • Protected by Quadruple IP
+                </p>
               </div>
             </div>
           </div>
@@ -489,7 +528,7 @@ export default function HomePage() {
                 />
                 <div>
                   <span className="text-2xl font-serif font-bold text-gold-shimmer">
-                    SaintSal<sup className="text-xs">™</sup>
+                    SaintSal<sup className="text-white text-sm ml-0.5">™</sup>
                   </span>
                   <p className="text-xs text-white/40">By Saint Vision Technologies</p>
                 </div>
@@ -498,7 +537,9 @@ export default function HomePage() {
                 The AI-powered platform for building wealth through trading, real estate, and business intelligence.
               </p>
               <div className="text-xs text-white/30">
-                US Patent 10,290,222 | HACP™ Patent Pending | SaintSal™ & HACP™ are registered trademarks
+                US Patent 10,290,222 | HACP<span className="text-white">™</span> Patent Pending | SaintSal
+                <span className="text-white">™</span> & HACP<span className="text-white">™</span> are registered
+                trademarks
               </div>
             </div>
 

@@ -52,9 +52,11 @@ export default function LoginPage() {
 
         <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-8">
           <div className="text-center mb-8">
-            <img src="/images/transparentsaintsallogo.png" alt="SaintSal" className="w-16 h-16 mx-auto mb-4" />
+            <img src="/images/transparentsaintsallogo.png" alt="SaintSal™" className="w-16 h-16 mx-auto mb-4" />
             <h1 className="text-2xl font-bold text-white">Welcome Back</h1>
-            <p className="text-neutral-400 mt-2">Sign in to your account</p>
+            <p className="text-neutral-400 mt-2">
+              Sign in to your SaintSal<span className="text-white">™</span> account
+            </p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-6">

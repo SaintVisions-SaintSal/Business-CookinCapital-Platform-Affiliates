@@ -73,9 +73,11 @@ export default function SignUpForm() {
 
         <div className="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-8">
           <div className="text-center mb-8">
-            <img src="/images/transparentsaintsallogo.png" alt="SaintSal" className="w-16 h-16 mx-auto mb-4" />
+            <img src="/images/transparentsaintsallogo.png" alt="SaintSal™" className="w-16 h-16 mx-auto mb-4" />
             <h1 className="text-2xl font-bold text-white">Create Account</h1>
-            <p className="text-neutral-400 mt-2">Join the Cookin' Capital community</p>
+            <p className="text-neutral-400 mt-2">
+              Join the SaintSal<span className="text-white">™</span> community
+            </p>
             {affiliateCode && (
               <div className="mt-3 inline-flex items-center gap-2 bg-[#d4a106]/10 border border-[#d4a106]/30 rounded-full px-4 py-1.5">
                 <span className="text-[#d4a106] text-sm">Referred by: {affiliateCode}</span>
